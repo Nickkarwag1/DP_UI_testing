@@ -1,8 +1,9 @@
 import { SELECTORS } from "../../selectors/selectorsForSelectIphone";
+import APPLE from "../../fixtures/productApple.json";
 
 Cypress.Commands.add("visitPageCatalog", (): void => {
-    cy.get(SELECTORS.CATALOG).contains("span", "Каталог").click();
-    cy.url().should("contain", "catalog");
+    cy.get(SELECTORS.CATALOG).contains("span", APPLE.CATALOG).click();
+    cy.url().should("contain", APPLE.CATALOG_URL_CONTAIN);
 });
 Cypress.Commands.add("appleButtonClick", (): void => {
     cy.get(SELECTORS.APPLE_BUTTON).should("be.visible").click();

@@ -1,4 +1,5 @@
 import { SELECTORS } from "../../selectors/selectorsLoginAndRegistration";
+import LOG_REG from "../../fixtures/loginAndRegistration.json";
 
 Cypress.Commands.add("clickButtonLogin", (): void => {
     cy.get(SELECTORS.LOGIN_BUTTON).click();
@@ -34,6 +35,6 @@ Cypress.Commands.add("typeRepeatPasswordForRegistration", (password: string): vo
 Cypress.Commands.add("checkErrorPrivacyPolicy", (): void => {
     cy.get(SELECTORS.REGISTRATION.ERROR_PRIVACY_POLICY).should(
         "contain.text",
-        "Политикой конфиденциальности и Пользовательским соглашением",
+        LOG_REG.EXP_VALUE.APPROVE_PRIVACY_POLICY,
     );
 });

@@ -1,4 +1,6 @@
 {
+    "CATALOG": "Каталог",
+    "CATALOG_URL_CONTAIN": "catalog",
     "PRODUCT": {
         "SMARTPHONES": "Смартфоны"
     },

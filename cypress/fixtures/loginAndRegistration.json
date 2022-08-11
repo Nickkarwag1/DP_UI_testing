@@ -8,6 +8,7 @@
         "INVALID_EMAIL_OR_PASSWORD": "Неверный логин или пароль",
         "ENTER_PASSWORD": "Укажите пароль",
         "ENTER_NICK_OR_EMAIL": "Укажите ник или e-mail",
-        "ENTER_EMAIL": "Укажите e-mail"
+        "ENTER_EMAIL": "Укажите e-mail",
+        "APPROVE_PRIVACY_POLICY": "Политикой конфиденциальности и Пользовательским соглашением"
     }
 }
