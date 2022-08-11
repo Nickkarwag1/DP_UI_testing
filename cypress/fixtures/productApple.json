@@ -1,8 +1,8 @@
 {
-  "PRODUCT": {
-    "SMARTPHONES":"Смартфоны"
-  },
-  "EXP_VALUE": {
-    "IPHONE_13": "iPhone 13"
-  }
+    "PRODUCT": {
+        "SMARTPHONES": "Смартфоны"
+    },
+    "EXP_VALUE": {
+        "IPHONE_13": "iPhone 13"
+    }
 }
