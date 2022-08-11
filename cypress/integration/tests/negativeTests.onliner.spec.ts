@@ -1,51 +1,54 @@
 describe("Onliner negative tests", () => {
+    before(() => {
+        cy.fixture("loginAndRegistration").then((LOG_REG) => (this.LOG_REG = LOG_REG));
+    });
     beforeEach(() => {
         cy.visit("/");
         cy.clickButtonLogin();
     });
     it("Login invalid e-mail and password", { scrollBehavior: false }, () => {
-        cy.typeEmail("niyob94613@agrolivana");
-        cy.typePassword("uiparoldiplom");
+        cy.typeEmail(this.LOG_REG.INVALID_EMAIL);
+        cy.typePassword(this.LOG_REG.INVALID_PASSWORD);
         cy.clickButtonEnter();
-        cy.checkErrorField("Неверный логин или пароль");
+        cy.checkErrorField(this.LOG_REG.EXP_VALUE.INVALID_EMAIL_OR_PASSWORD);
     });
     it("Login only with e-mail", { scrollBehavior: false }, () => {
-        cy.typeEmail("niyob94613@agrolivana.com");
+        cy.typeEmail(this.LOG_REG.EMAIL);
         cy.clickButtonEnter();
-        cy.checkErrorField("Укажите пароль");
+        cy.checkErrorField(this.LOG_REG.EXP_VALUE.ENTER_PASSWORD);
     });
     it("Login only with password", { scrollBehavior: false }, () => {
-        cy.typePassword("ui_parol_diplom");
+        cy.typePassword(this.LOG_REG.PASSWORD);
         cy.clickButtonEnter();
-        cy.checkErrorField("Укажите ник или e-mail");
+        cy.checkErrorField(this.LOG_REG.EXP_VALUE.ENTER_NICK_OR_EMAIL);
     });
     it("Registration only with e-mail and approve privacy policy", { scrollBehavior: false }, () => {
-        cy.clickButtonRegistration("registration");
-        cy.typeEmailForRegistration("niyob94613@agrolivana.com");
+        cy.clickButtonRegistration(this.LOG_REG.REGISTRATION);
+        cy.typeEmailForRegistration(this.LOG_REG.EMAIL);
         cy.approvePrivacyPolicy();
         cy.clickButtonEnter();
-        cy.checkErrorField("Укажите пароль");
+        cy.checkErrorField(this.LOG_REG.EXP_VALUE.ENTER_PASSWORD);
     });
     it("Registration only with password and approve privacy policy", { scrollBehavior: false }, () => {
-        cy.clickButtonRegistration("registration");
-        cy.typePasswordForRegistration("ui_parol_diplom");
+        cy.clickButtonRegistration(this.LOG_REG.REGISTRATION);
+        cy.typePasswordForRegistration(this.LOG_REG.PASSWORD);
         cy.approvePrivacyPolicy();
         cy.clickButtonEnter();
-        cy.checkErrorField("Укажите e-mail");
+        cy.checkErrorField(this.LOG_REG.EXP_VALUE.ENTER_EMAIL);
     });
     it("Registration without repeat password", { scrollBehavior: false }, () => {
-        cy.clickButtonRegistration("registration");
-        cy.typeEmailForRegistration("niyob94613@agrolivana.com");
-        cy.typePasswordForRegistration("ui_parol_diplom");
+        cy.clickButtonRegistration(this.LOG_REG.REGISTRATION);
+        cy.typeEmailForRegistration(this.LOG_REG.EMAIL);
+        cy.typePasswordForRegistration(this.LOG_REG.PASSWORD);
         cy.approvePrivacyPolicy();
         cy.clickButtonEnter();
-        cy.checkErrorField("Укажите пароль");
+        cy.checkErrorField(this.LOG_REG.EXP_VALUE.ENTER_PASSWORD);
     });
     it("Registration without approve privacy policy", { scrollBehavior: false }, () => {
-        cy.clickButtonRegistration("registration");
-        cy.typeEmailForRegistration("niyob94613@agrolivana.com");
-        cy.typePasswordForRegistration("ui_parol_diplom");
-        cy.typeRepeatPasswordForRegistration("ui_parol_diplom");
+        cy.clickButtonRegistration(this.LOG_REG.REGISTRATION);
+        cy.typeEmailForRegistration(this.LOG_REG.EMAIL);
+        cy.typePasswordForRegistration(this.LOG_REG.PASSWORD);
+        cy.typeRepeatPasswordForRegistration(this.LOG_REG.PASSWORD);
         cy.clickButtonEnter();
         cy.checkErrorPrivacyPolicy();
     });
