@@ -1,34 +1,39 @@
+import { SELECTORS } from "../../selectors/selectorsLoginAndRegistration";
+
 Cypress.Commands.add("clickButtonLogin", (): void => {
-    cy.get(".auth-bar__item--text").click();
+    cy.get(SELECTORS.LOGIN_BUTTON).click();
 });
 Cypress.Commands.add("clickButtonEnter", (): void => {
-    cy.get(".auth-form__button_width_full").click();
+    cy.get(SELECTORS.ENTER_BUTTON).click();
 });
 Cypress.Commands.add("checkErrorField", (expectedValue: string): void => {
-    cy.get(".auth-form__description_error").contains("div", expectedValue).should("be.visible");
+    cy.get(SELECTORS.FIELDS_WITH_ERROR).contains("div", expectedValue).should("be.visible");
 });
 Cypress.Commands.add("typeEmail", (email: string): void => {
-    cy.get("[placeholder='Ник или e-mail']").type(email).should("have.value", email);
+    cy.get(SELECTORS.LOGIN.EMAIL).type(email).should("have.value", email);
 });
 Cypress.Commands.add("typePassword", (password: string): void => {
-    cy.get("[placeholder='Пароль']").type(password).should("have.value", password);
+    cy.get(SELECTORS.LOGIN.PASSWORD).type(password).should("have.value", password);
 });
 Cypress.Commands.add("clickButtonRegistration", (expectedValue: string): void => {
-    cy.get("a[href$='registration']").click();
+    cy.get(SELECTORS.REGISTRATION_BUTTON).click();
     cy.url().should("contain", expectedValue);
 });
 Cypress.Commands.add("approvePrivacyPolicy", (): void => {
-    cy.get("input.i-checkbox__real").click({ force: true });
+    cy.get(SELECTORS.REGISTRATION.APPROVE_PRIVACY_POLICY).click({ force: true });
 });
 Cypress.Commands.add("typeEmailForRegistration", (email: string): void => {
-    cy.get("[placeholder='Ваш e-mail']").type(email).should("have.value", email);
+    cy.get(SELECTORS.REGISTRATION.EMAIL).type(email).should("have.value", email);
 });
 Cypress.Commands.add("typePasswordForRegistration", (password: string): void => {
-    cy.get("[placeholder='Придумайте пароль']").type(password).should("have.value", password);
+    cy.get(SELECTORS.REGISTRATION.PASSWORD).type(password).should("have.value", password);
 });
 Cypress.Commands.add("typeRepeatPasswordForRegistration", (password: string): void => {
-    cy.get("[placeholder='Повторите пароль']").type(password).should("have.value", password);
+    cy.get(SELECTORS.REGISTRATION.REPEAT_PASSWORD).type(password).should("have.value", password);
 });
 Cypress.Commands.add("checkErrorPrivacyPolicy", (): void => {
-    cy.get(".growl-content").should("contain.text", "Политикой конфиденциальности и Пользовательским соглашением");
+    cy.get(SELECTORS.REGISTRATION.ERROR_PRIVACY_POLICY).should(
+        "contain.text",
+        "Политикой конфиденциальности и Пользовательским соглашением",
+    );
 });
