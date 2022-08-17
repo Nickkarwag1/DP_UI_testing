@@ -7,9 +7,10 @@ describe("Onliner positive tests", () => {
         cy.fixture("weather").then((WEATHER) => (this.WEATHER = WEATHER));
         cy.fixture("productApple").then((APPLE) => (this.APPLE = APPLE));
         cy.fixture("modelCar").then((CAR) => (this.CAR = CAR));
+        cy.fixture("intercepts").then((INTER) => (this.INTER = INTER));
     });
     beforeEach(() => {
-        cy.intercept("GET", "**/sdapi/pogoda/api/now*").as("weather");
+        cy.intercept(this.INTER.METHOD.GET, this.INTER.URL.WEATHER).as(this.INTER.ALIAS.WEATHER);
         cy.visit("/");
     });
     it("Check page in footer vacancies", { scrollBehavior: false }, () => {
@@ -25,7 +26,7 @@ describe("Onliner positive tests", () => {
         cy.visitPageForum(this.FORUM.EXP_VALUE.FORUM);
     });
     it("Click tab weather in header web app", { scrollBehavior: false }, () => {
-        cy.wait("@weather");
+        cy.wait(this.INTER.WAIT.WEATHER);
         cy.visitPageWeather(this.WEATHER.EXP_VALUE.WEATHER);
     });
     it("Select product iPhone 13 in catalog", { scrollBehavior: false }, () => {

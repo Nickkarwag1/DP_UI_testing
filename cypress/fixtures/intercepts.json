@@ -1,0 +1,14 @@
+{
+  "METHOD": {
+    "GET": "GET"
+  },
+  "URL": {
+    "WEATHER": "**/sdapi/pogoda/api/now*"
+  },
+  "ALIAS": {
+    "WEATHER": "weather"
+  },
+  "WAIT": {
+    "WEATHER": "@weather"
+  }
+}
